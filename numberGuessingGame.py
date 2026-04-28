@@ -200,7 +200,10 @@ def submitGuess(event):
     guessesRemaining -= 1 # Decrease guesses remaining by 1
     submissionNum = tk.Label(gameFrame, text="Guess #" + str(guessNum), font=textFont) # Create submission # label
     guessElements.append(submissionNum) # Add submissionNum to UI elements list
-    submissionLabel = tk.Label(gameFrame, text=str(guess), font=textFont) # Create guess label
+    guessString = str(guess)
+    for i in range(difficultyLevel - len(guessString) + 1): # Adds trailing zeros so that the UI label has the same decimal precision as the randomly generated number
+        guessString += "0"
+    submissionLabel = tk.Label(gameFrame, text=guessString, font=textFont) # Create guess label
     guessElements.append(submissionLabel) # Add guessElements to UI elements list
     if guess < randomNumber: # If guess is lower than the correct number, create label that displays "Too low!" and add it to the list of UI elements
         highOrLow = tk.Label(gameFrame, text= "Too low!", font=textFont)
